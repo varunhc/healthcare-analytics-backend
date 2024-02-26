@@ -1,0 +1,157 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2757
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 caregiver\
+-\
+column_name data_type\
+caregiver_id PK INT64\
+\
+chartevents\
+-\
+column_name data_type\
+subject_id INT64\
+hadm_id INT64\
+stay_id INT64 FK >- icustays.stay_id\
+caregiver_id INT64 FK >- caregiver.caregiver_id\
+charttime DATETIME\
+storetime DATETIME\
+itemid INT64 FK >- d_items.itemid\
+value STRING\
+valuenum FLOAT64\
+valueuom STRING\
+warning INT64\
+\
+d_items\
+-\
+column_name data_type\
+itemid PK INT64\
+label STRING\
+abbreviation STRING\
+linksto STRING\
+category STRING\
+unitname STRING\
+param_type STRING\
+lownormalvalue FLOAT64\
+highnormalvalue FLOAT64\
+\
+datetimeevents\
+------------\
+column_name data_type\
+subject_id INT64\
+hadm_id INT64\
+stay_id INT64 FK >- icustays.stay_id\
+caregiver_id INT64 FK >- caregiver.caregiver_id\
+charttime DATETIME\
+storetime DATETIME\
+itemid INT64 FK >- d_items.itemid\
+value DATETIME\
+valueuom STRING\
+warning INT64\
+\
+icustays\
+----\
+column_name data_type\
+subject_id INT64\
+hadm_id INT64\
+stay_id PK INT64\
+first_careunit STRING\
+last_careunit STRING\
+intime DATETIME\
+outtime DATETIME\
+los FLOAT64\
+\
+ingredientevents\
+----\
+column_name data_type\
+subject_id INT64\
+hadm_id INT64\
+stay_id INT64 FK >- icustays.stay_id\
+caregiver_id INT64 FK >- caregiver.caregiver_id\
+starttime DATETIME\
+endtime DATETIME\
+storetime DATETIME\
+itemid INT64 FK >- d_items.itemid\
+amount FLOAT64\
+amountuom STRING\
+rate FLOAT64\
+rateuom STRING\
+orderid INT64\
+linkorderid INT64\
+statusdescription STRING\
+originalamount FLOAT64\
+originalrate FLOAT64\
+\
+inputevents\
+----\
+column_name data_type\
+subject_id INT64\
+hadm_id INT64\
+stay_id INT64 FK >- icustays.stay_id\
+caregiver_id INT64 FK >- caregiver.caregiver_id\
+starttime DATETIME\
+endtime DATETIME\
+storetime DATETIME\
+itemid INT64 FK >- d_items.itemid\
+amount FLOAT64\
+amountuom STRING\
+rate FLOAT64\
+rateuom STRING\
+orderid INT64\
+linkorderid INT64\
+ordercategoryname STRING\
+secondaryordercategoryname STRING\
+ordercomponenttypedescription STRING\
+ordercategorydescription STRING\
+patientweight FLOAT64\
+totalamount FLOAT64\
+totalamountuom STRING\
+isopenbag INT64\
+continueinnextdept INT64\
+statusdescription STRING\
+originalamount FLOAT64\
+originalrate FLOAT64\
+\
+outputevents\
+----\
+column_name data_type\
+subject_id INT64\
+hadm_id INT64\
+stay_id INT64 FK >- icustays.stay_id\
+caregiver_id INT64 FK >- caregiver.caregiver_id\
+charttime DATETIME\
+storetime DATETIME\
+itemid INT64 FK >- d_items.itemid\
+value FLOAT64\
+valueuom STRING\
+\
+procedureevents\
+----\
+column_name data_type\
+subject_id INT64\
+hadm_id INT64\
+stay_id INT64 FK >- icustays.stay_id\
+caregiver_id INT64 FK >- caregiver.caregiver_id\
+starttime DATETIME\
+endtime DATETIME\
+storetime DATETIME\
+itemid INT64 FK >- d_items.itemid\
+value FLOAT64\
+valueuom STRING\
+location STRING\
+locationcategory STRING\
+orderid INT64\
+linkorderid INT64\
+ordercategoryname STRING\
+ordercategorydescription STRING\
+patientweight FLOAT64\
+isopenbag INT64\
+continueinnextdept INT64\
+statusdescription STRING\
+ORIGINALAMOUNT FLOAT64\
+ORIGINALRATE FLOAT64\
+\
+}
