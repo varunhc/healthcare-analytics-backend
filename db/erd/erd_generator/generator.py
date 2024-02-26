@@ -5,28 +5,28 @@ from sqlalchemy.ext.declarative import declarative_base
 from eralchemy2 import render_er
 
 
-def class_factory(name, argDict, BaseClass):
-    def __init__(self, argDict):
-        for key in argDict:
-            setattr(self, key, argDict[key])
+def class_factory(name, para_dict, BaseClass):
+    def __init__(self, para_dict):
+        for key in para_dict:
+            setattr(self, key, para_dict[key])
 
-    argDict["__init__"] = __init__
-    newclass = type(name, (BaseClass,), argDict)
+    para_dict["__init__"] = __init__
+    newclass = type(name, (BaseClass,), para_dict)
     return newclass
 
 
 def erd_generator(db_name, db_pk_info, tables):
     Base = declarative_base()
     for table in tables:
-        para_dict = {
+        argDict = {
             "__tablename__": table
         }
         if table in db_pk_info:
             for field in tables[table]:
-                para_dict[field] = Column(TYPE_MAP[tables[table][field]],
+                argDict[field] = Column(TYPE_MAP[tables[table][field]],
                                           primary_key=db_pk_info[table] == field)
         else:
-            para_dict["id"] = Column(Integer, primary_key=True)
+            argDict["id"] = Column(Integer, primary_key=True)
             for field in tables[table]:
                 pk_table = None
                 if field in db_pk_info.values():
@@ -35,12 +35,12 @@ def erd_generator(db_name, db_pk_info, tables):
                             pk_table = key
                             break
                 if pk_table:
-                    para_dict[field] = Column(ForeignKey(f'{pk_table}.{field}'))
+                    argDict[field] = Column(ForeignKey(f'{pk_table}.{field}'))
                 else:
-                    para_dict[field] = Column(TYPE_MAP[tables[table][field]])
+                    argDict[field] = Column(TYPE_MAP[tables[table][field]])
         temp_class = class_factory(
             name=table,
-            argDict=para_dict,
+            para_dict=argDict,
             BaseClass=Base
         )
     file_name = db_name.split("_")[1]
