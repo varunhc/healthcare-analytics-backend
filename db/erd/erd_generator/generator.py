@@ -24,16 +24,15 @@ def erd_generator(db_name, db_pk_info, tables):
         if table in db_pk_info:
             for field in tables[table]:
                 argDict[field] = Column(TYPE_MAP[tables[table][field]],
-                                          primary_key=db_pk_info[table] == field)
+                                          primary_key=db_pk_info[table][0] == field)
         else:
             argDict["id"] = Column(Integer, primary_key=True)
             for field in tables[table]:
                 pk_table = None
-                if field in db_pk_info.values():
-                    for key, value in db_pk_info.items():
-                        if value == field:
-                            pk_table = key
-                            break
+                for key, value in db_pk_info.items():
+                    if field in value:
+                        pk_table = key
+                        break
                 if pk_table:
                     argDict[field] = Column(ForeignKey(f'{pk_table}.{field}'))
                 else:
