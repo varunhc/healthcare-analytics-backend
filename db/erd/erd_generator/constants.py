@@ -3,8 +3,9 @@ from sqlalchemy import BOOLEAN, NUMERIC, DATE, Float, Integer, String, DATETIME
 
 DB_NAMES = {
     "mimiciv_ecg": {
-        "pk": {
-            "record_list": ["study_id"]
+        "pk":
+            {
+                "record_list": ["study_id"]
             }
     },
     "mimiciv_hosp": {
@@ -24,9 +25,20 @@ DB_NAMES = {
     "mimiciv_icu": {
         "pk":
             {
-            "caregiver": ["caregiver_id"],
-            "icustays": ["stay_id"],
-            "d_items": ["itemid"]
+                "caregiver": ["caregiver_id"],
+                "icustays": ["stay_id"],
+                "d_items": ["itemid"]
+            }
+    },
+    "mimiciv_ed": {
+        "pk":
+            {
+                "edstays": ["stay_id"]
+            }
+    },
+    "mimiciv_note": {
+        "pk":
+            {
             }
     },
     "mimiciv_derived": {

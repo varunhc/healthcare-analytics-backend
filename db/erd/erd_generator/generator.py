@@ -43,8 +43,8 @@ def erd_generator(db_name, db_pk_info, tables):
             BaseClass=Base
         )
     file_name = db_name.split("_")[1]
-    render_er(Base, output=f"../db/{file_name}/{file_name}.png")
-    render_er(Base, output=f"../db/{file_name}/{file_name}.pdf")
+    render_er(Base, output=f"../results/{file_name}/{file_name}.png")
+    render_er(Base, output=f"../results/{file_name}/{file_name}.pdf")
 
 
 def create_table_dict(db):
@@ -66,6 +66,6 @@ if __name__ == "__main__":
     for db in DB_NAMES:
         if not count: print(" => START", end="")
         table_info = create_table_dict(db)
-        erd_generator(db, DB_NAMES[db]["pk"], table_info)
+        # erd_generator(db, DB_NAMES[db]["pk"], table_info)
         count += 1
         print(f" => {100*count/total}%", end='')
