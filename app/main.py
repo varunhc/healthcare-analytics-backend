@@ -39,3 +39,14 @@ def mortality_stats():
                 data),
             status=200,
             mimetype='application/json')
+
+
+@app.route("/home/admission_reason_stats", methods=["GET"])
+def admission_reason_stats():
+    if request.method=="GET":
+        data = get_admission_reason_data()
+        return Response(
+            json.dumps(
+                data),
+            status=200,
+            mimetype='application/json')

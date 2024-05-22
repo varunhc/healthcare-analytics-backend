@@ -163,3 +163,22 @@ def mortality_data():
     except Exception as e:
         print(f"Couldn't fetch info. Error: {e}")
     return result
+
+
+
+def admission_reason_data():
+    result = []
+    try:
+        query = (
+        """
+        SELECT curr_service AS service, count(*) as n
+        FROM `physionet-data.mimiciv_hosp.services`
+        GROUP BY 1
+        ORDER BY 2
+        """
+        )
+        query_job = client.query(query)  # API request
+        result = query_job.result()
+    except Exception as e:
+        print(f"Couldn't fetch info. Error: {e}")
+    return result
